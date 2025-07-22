@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Folder Nav</title>
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --card: #1a1a1a;
+      --accent: #ff5e5e;
+      --text: #ffffff;
+      --text-dim: #aaaaaa;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      width: 100vw;
+      height: 100vh;
+      overflow-x: hidden;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 16px;
+      width: 100%;
+    }
+
+    header {
+      padding: 20px 0;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+      color: var(--text-dim);
+      font-size: 14px;
+      font-weight: 400;
+    }
+
+    .folder-list {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .folder-card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: transform 0.2s, background 0.2s;
+      border: 1px solid #2a2a2a;
+      cursor: pointer;
+    }
+
+    .folder-card:hover {
+      background: #1f1f1f;
+    }
+
+    .folder-card:active {
+      transform: scale(0.97);
+      background: #222222;
+    }
+
+    .folder-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .folder-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--accent), #ff8a5e);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 18px;
+    }
+
+    .folder-name {
+      font-weight: 600;
+      font-size: 16px;
+      margin-bottom: 2px;
+    }
+
+    .folder-items {
+      color: var(--text-dim);
+      font-size: 13px;
+    }
+
+    .folder-arrow {
+      color: var(--text-dim);
+      font-size: 14px;
+    }
+
+    .subfolders {
+      margin-top: 10px;
+      margin-left: 52px;
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .sub-button {
+      background: var(--card);
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 14px;
+      color: var(--text);
+      text-align: left;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .sub-button:hover {
+      background: #262626;
+    }
+
+    footer {
+      margin-top: 30px;
+      padding: 16px 0;
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    @media (min-width: 600px) {
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      .folder-name {
+        font-size: 18px;
+      }
+
+      .folder-items {
+        font-size: 14px;
+      }
+
+      .folder-card {
+        padding: 20px;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+  <div class="container" id="app">
+    <header>
+      <h1>FOLDER NAVIGATION</h1>
+      <p class="subtitle">Operating access to all your resources</p>
+    </header>
+
+    <main class="folder-list">
+      <!-- Folder 1 -->
+      <div class="folder-card" onclick="toggleSubfolder('f8723')">
+        <div class="folder-info">
+          <div class="folder-icon">
+            <i class="fas fa-folder"></i>
+          </div>
+          <div>
+            <div class="folder-name">8723</div>
+            <div class="folder-items">2 items</div>
+          </div>
+        </div>
+        <i class="fas fa-chevron-down folder-arrow"></i>
+      </div>
+      <div class="subfolders" id="f8723">
+        <button class="sub-button" onclick="alert('Open Notes')">📄 Notes</button>
+        <button class="sub-button" onclick="alert('Open Drafts')">📁 Drafts</button>
+      </div>
+
+      <!-- Folder 2 -->
+      <div class="folder-card" onclick="toggleSubfolder('f1109')">
+        <div class="folder-info">
+          <div class="folder-icon">
+            <i class="fas fa-clipboard-list"></i>
+          </div>
+          <div>
+            <div class="folder-name">1109</div>
+            <div class="folder-items">1 item</div>
+          </div>
+        </div>
+        <i class="fas fa-chevron-down folder-arrow"></i>
+      </div>
+      <div class="subfolders" id="f1109">
+        <button class="sub-button" onclick="window.location.href='https://example.com'">🔗 Visit Link</button>
+      </div>
+    </main>
+
+    <footer>
+      © 2023 Master Faber Navigation | Professional Design
+    </footer>
+  </div>
+
+  <script>
+    // Kill switch
+    const SITE_STATUS = "on"; // Change to "off" to disable site
+
+    if (SITE_STATUS === "off") {
+      document.body.innerHTML = `<div style="color: white; text-align: center; margin-top: 50px;">This site is currently offline.</div>`;
+    }
+
+    // Toggle subfolders
+    function toggleSubfolder(id) {
+      const el = document.getElementById(id);
+      if (el.style.display === "flex") {
+        el.style.display = "none";
+      } else {
+        el.style.display = "flex";
+      }
+    }
+  </script>
+</body>
+</html>
